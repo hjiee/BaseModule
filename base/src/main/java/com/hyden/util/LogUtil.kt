@@ -5,33 +5,33 @@ import android.util.Log
 import com.hyden.base.BuildConfig
 
 object LogUtil {
-    private const val TAG = "LogUtil"
+    private const val TAG = "hjiee"
     
-    fun logV(msg : String) {
+    fun LogV(msg : String) {
         if(BuildConfig.DEBUG) {
             Log.v(TAG,msg)
         }
     }
 
-    fun logD(msg : String) {
+    fun LogD(msg : String) {
         if(BuildConfig.DEBUG) {
             Log.d(TAG,msg)
         }
     }
 
-    fun logI(msg : String) {
+    fun LogI(msg : String) {
         if(BuildConfig.DEBUG) {
             Log.i(TAG,msg)
         }
     }
     
-    fun logW(msg : String) {
+    fun LogW(msg : String) {
         if(BuildConfig.DEBUG) {
             Log.w(TAG,msg)
         }
     }
     
-    fun logE(msg : String) {
+    fun LogE(msg : String) {
         if(BuildConfig.DEBUG) {
             Log.e(TAG,msg)
         }

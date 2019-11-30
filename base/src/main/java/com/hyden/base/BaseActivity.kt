@@ -27,6 +27,6 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 }
