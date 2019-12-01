@@ -7,16 +7,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.hyden.util.ItemClickListener
 import com.hyden.util.RecyclerDiffUtil
 
 class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
         private val layoutId: Int,
         private val bindingVariableId: Int?,
-        private val event : ((T) -> Unit)? = null
+        private val event : ItemClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
-
+        var itemClick : ((T) -> Unit)? = null
         private var list = listOf<ITEM>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
@@ -26,7 +27,7 @@ class BaseRecyclerView {
                 bindingVariableId
             ) {}
             holder.itemView.setOnClickListener {
-                event?.invoke(list[holder.adapterPosition] as T)
+                event?.onItemClick(list[holder.adapterPosition] as T)
             }
             return holder
         }
@@ -49,6 +50,8 @@ class BaseRecyclerView {
                 }
             }
         }
+
+
 
     }
 
