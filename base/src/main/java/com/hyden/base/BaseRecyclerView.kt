@@ -8,13 +8,15 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hyden.util.ItemClickListener
+import com.hyden.util.ItemLongClickListener
 import com.hyden.util.RecyclerDiffUtil
 
 class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
         private val layoutId: Int,
         private val bindingVariableId: Int?,
-        private val event : ItemClickListener? = null
+        private val clickItemEvent : ItemClickListener? = null,
+        private val longClickItemEvent : ItemLongClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
         var itemClick : ((T) -> Unit)? = null
@@ -26,8 +28,9 @@ class BaseRecyclerView {
                 parent,
                 bindingVariableId
             ) {}
-            holder.itemView.setOnClickListener {
-                event?.onItemClick(list[holder.adapterPosition] as T)
+            holder.itemView.apply {
+                setOnClickListener { clickItemEvent?.onItemClick(list[holder.adapterPosition] as T) }
+                setOnLongClickListener { longClickItemEvent?.onItemLongClick(list[holder.adapterPosition] as T) ?: false }
             }
             return holder
         }
