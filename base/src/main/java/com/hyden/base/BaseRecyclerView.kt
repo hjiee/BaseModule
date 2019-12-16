@@ -1,11 +1,13 @@
 package com.hyden.base
 
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.hyden.util.CommonUtil.Companion.CLICK_THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.ItemLongClickListener
 import com.hyden.util.RecyclerDiffUtil
@@ -35,8 +37,8 @@ class BaseRecyclerView {
         private val longClickItemEvent: ItemLongClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
-        var itemClick: ((T) -> Unit)? = null
         private var list = listOf<ITEM>()
+        private var CLICK_LAST_TIME = 0L
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
             val holder = object : ViewHolder<B>(
@@ -45,10 +47,17 @@ class BaseRecyclerView {
                 bindingVariableId
             ) {}
             holder.itemView.apply {
-                setOnClickListener { clickItemEvent?.onItemClick(list[holder.adapterPosition] as T) }
+                setOnClickListener {
+                    if (!(SystemClock.elapsedRealtime() - CLICK_LAST_TIME < CLICK_THROTTLE)) {
+                        clickItemEvent?.onItemClick(list[holder.adapterPosition] as T)
+                    }
+                }
+
                 setOnLongClickListener {
                     longClickItemEvent?.onItemLongClick(list[holder.adapterPosition] as T) ?: false
                 }
+                CLICK_LAST_TIME = SystemClock.elapsedRealtime()
+
             }
             return holder
         }
