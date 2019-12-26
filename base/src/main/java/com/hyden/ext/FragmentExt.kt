@@ -26,7 +26,7 @@ fun Fragment.replaceFragmentStack(fragment: Fragment, layoutId : Int) {
 }
 
 
-fun Fragment.moveToActivity(intent : Intent) {
+fun Fragment.moveToActivity(intent : Intent?) {
     startActivity(intent)
     activity?.overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
 }

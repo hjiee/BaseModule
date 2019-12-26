@@ -15,6 +15,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         compositeDisposable = CompositeDisposable()
 
         binding = DataBindingUtil.inflate(layoutInflater, layoutId, null, false)
@@ -25,8 +26,14 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
 
     }
 
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.clear()
     }
+
 }
