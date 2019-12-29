@@ -9,6 +9,7 @@ import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -52,6 +53,11 @@ fun ImageView.loadUrl(
                 ImageTransformType.FIT -> {
                     override(450, 650)
                     apply(RequestOptions.fitCenterTransform().centerCrop())
+                }
+                ImageTransformType.CIRCLE -> {
+                    thumbnail(0.5f)
+                    apply(RequestOptions.circleCropTransform())
+
                 }
                 else -> apply(RequestOptions.fitCenterTransform().centerCrop())
             }

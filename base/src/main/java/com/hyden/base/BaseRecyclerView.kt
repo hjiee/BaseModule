@@ -30,7 +30,7 @@ class BaseRecyclerView {
 
     }
 
-    abstract class Adapter<ITEM : Any, B : ViewDataBinding, T>(
+    abstract class Adapter<ITEM : Any, B : ViewDataBinding>(
         private val layoutId: Int,
         private val bindingVariableId: Int?,
         private val clickItemEvent: ItemClickListener? = null,
@@ -49,12 +49,11 @@ class BaseRecyclerView {
             holder.itemView.apply {
                 setOnClickListener {
                     if (!(SystemClock.elapsedRealtime() - CLICK_LAST_TIME < CLICK_THROTTLE)) {
-                        clickItemEvent?.onItemClick(list[holder.adapterPosition] as T)
+                        clickItemEvent?.onItemClick(list[holder.adapterPosition])
                     }
                 }
-
                 setOnLongClickListener {
-                    longClickItemEvent?.onItemLongClick(list[holder.adapterPosition] as T) ?: false
+                    longClickItemEvent?.onItemLongClick(list[holder.adapterPosition]) ?: false
                 }
                 CLICK_LAST_TIME = SystemClock.elapsedRealtime()
 

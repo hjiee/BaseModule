@@ -8,7 +8,7 @@ import java.util.Collections.replaceAll
 @BindingAdapter(value = ["bindItems"])
 fun RecyclerView.bindItems(items : List<Any>?) {
     items?.let {
-        (adapter as? BaseRecyclerView.Adapter<Any,*, Any?>)?.run {
+        (adapter as? BaseRecyclerView.Adapter<Any,*>)?.run {
 //            replaceAll(items)
             updateItems(items)
         }
