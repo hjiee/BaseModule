@@ -22,6 +22,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         setContentView(binding.root)
         binding.lifecycleOwner = this
 
+
         initBind()
 
     }

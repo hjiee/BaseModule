@@ -19,7 +19,6 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         compositeDisposable = CompositeDisposable()
-        LogE("onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,23 +28,7 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
         binding.lifecycleOwner = this
 
         initBind()
-        LogE("onCreateView")
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        LogE("onPause")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        LogE("onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        LogE("onStop")
     }
 
     override fun onDestroyView() {
