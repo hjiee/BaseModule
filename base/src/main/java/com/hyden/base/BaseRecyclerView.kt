@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hyden.util.CommonUtil.Companion.CLICK_THROTTLE
+import com.hyden.util.ConstValueUtil.Companion.CLICK_THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.ItemLongClickListener
 import com.hyden.util.RecyclerDiffUtil
