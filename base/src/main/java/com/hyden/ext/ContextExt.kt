@@ -26,3 +26,7 @@ fun Context.hideKeyboard(view: View) {
         0
     )
 }
+
+fun Context.checkPermission(neededPermissions : List<String>) : Boolean {
+    return true
+}
