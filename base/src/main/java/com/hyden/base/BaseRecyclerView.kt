@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hyden.util.ConstValueUtil.Companion.CLICK_THROTTLE
+import com.hyden.util.ConstValueUtil.Companion.THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.ItemLongClickListener
 import com.hyden.util.RecyclerDiffUtil
@@ -38,7 +38,7 @@ class BaseRecyclerView {
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
         private var list = listOf<ITEM>()
-        private var CLICK_LAST_TIME = 0L
+        private var lastClickTime = 0L
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
             val holder = object : ViewHolder<B>(
@@ -48,14 +48,14 @@ class BaseRecyclerView {
             ) {}
             holder.itemView.apply {
                 setOnClickListener {
-                    if (!(SystemClock.elapsedRealtime() - CLICK_LAST_TIME < CLICK_THROTTLE)) {
+                    if (!(SystemClock.elapsedRealtime() - lastClickTime < THROTTLE)) {
                         clickItemEvent?.onItemClick(list[holder.adapterPosition])
                     }
                 }
                 setOnLongClickListener {
                     longClickItemEvent?.onItemLongClick(list[holder.adapterPosition]) ?: false
                 }
-                CLICK_LAST_TIME = SystemClock.elapsedRealtime()
+                lastClickTime = SystemClock.elapsedRealtime()
 
             }
             return holder
@@ -65,11 +65,6 @@ class BaseRecyclerView {
 
         override fun onBindViewHolder(holder: ViewHolder<B>, position: Int) =
             holder.onBind(list[position])
-
-        fun replaceAll(items: List<ITEM>) {
-            list = items
-            notifyDataSetChanged()
-        }
 
         fun updateItems(items: List<ITEM>) {
             RecyclerDiffUtil(list, items).apply {
