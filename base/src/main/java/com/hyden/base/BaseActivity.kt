@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.androidx.scope.currentScope
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
@@ -21,10 +23,16 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         binding = DataBindingUtil.inflate(layoutInflater, layoutId, null, false)
         setContentView(binding.root)
         binding.lifecycleOwner = this
-
-
+        lifeCylceLog("onCreate")
+    }
+    override fun onStart() {
+        super.onStart()
         initBind()
-
+        lifeCylceLog("onStart")
+    }
+    override fun onResume() {
+        super.onResume()
+        lifeCylceLog("onResume")
     }
 
     override fun finish() {
@@ -32,9 +40,33 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        lifeCylceLog("onRestart")
+    }
+
+
+
+
+
+    override fun onPause() {
+        super.onPause()
+        lifeCylceLog("onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        lifeCylceLog("onStop")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        lifeCylceLog("onDestroy")
         compositeDisposable.clear()
+    }
+
+    private fun lifeCylceLog(name : String) {
+        LogW("Activity : ${binding?.lifecycleOwner} / $name")
     }
 
 }
