@@ -5,6 +5,7 @@ import android.hardware.input.InputManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 
 fun Context.showKeyboard(view: View) {
     view.apply {
@@ -29,4 +30,8 @@ fun Context.hideKeyboard(view: View) {
 
 fun Context.checkPermission(neededPermissions : List<String>) : Boolean {
     return true
+}
+
+fun Context.showToast(message : String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
