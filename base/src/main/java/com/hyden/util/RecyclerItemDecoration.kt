@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerItemDecoration(private val space : Int) : RecyclerView.ItemDecoration() {
 
+    // TODO: 2020-02-11 item decoration gridlayout span에 맞게 사이즈 조절
+
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

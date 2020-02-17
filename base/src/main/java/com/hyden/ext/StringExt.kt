@@ -1,5 +1,6 @@
 package com.hyden.ext
 
+import android.widget.TextView
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -11,3 +12,5 @@ fun String.numberFormatter() : String {
         it.format(this.toDouble())
     }
 }
+
+

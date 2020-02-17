@@ -3,6 +3,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.hyden.util.LogUtil.LogW
 
 /**
  * 원본 코드 주소
@@ -59,6 +60,7 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
             else -> 0
         }
 
+
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
         // If it’s still loading, we check to see if the dataset count has
@@ -72,6 +74,7 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
 
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
+        scrollLog("$loading : $totalItemCount < $previousTotalItemCount")
         if (totalItemCount < previousTotalItemCount) {
             this.currentPage = this.startingPageIndex
             this.previousTotalItemCount = totalItemCount
@@ -82,6 +85,7 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
         // If it’s still loading, we check to see if the dataset count has
         // changed, if so we conclude it has finished loading and update the current page
         // number and total item count.
+        scrollLog("$loading : $totalItemCount > $previousTotalItemCount")
         if (loading && totalItemCount > previousTotalItemCount) {
             loading = false
             previousTotalItemCount = totalItemCount
@@ -91,11 +95,14 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
         // the visibleThreshold and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         // threshold should reflect how many total columns there are too
+        scrollLog("$loading : $lastVisibleItemPosition + $visibleThreshold > $totalItemCount")
         if (!loading && lastVisibleItemPosition + visibleThreshold > totalItemCount) {
             currentPage++
             onLoadMore(currentPage, totalItemCount, view)
             loading = true
         }
+
+        scrollLog("---------------------------------------------------")
     }
 
     // Call this method whenever performing new searches
@@ -103,6 +110,10 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
         this.currentPage = this.startingPageIndex
         this.previousTotalItemCount = 0
         this.loading = true
+    }
+
+    private fun scrollLog(msg : Any) {
+        LogW(msg.toString())
     }
 
     // Defines the process for actually loading more data based on page
