@@ -66,7 +66,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
     }
 
     private fun lifeCylceLog(name : String) {
-        LogW("Activity : ${binding?.lifecycleOwner} / $name")
+//        LogW("Activity : ${binding?.lifecycleOwner} / $name")
     }
 
 }

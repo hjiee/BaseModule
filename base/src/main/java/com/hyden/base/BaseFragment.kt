@@ -70,7 +70,7 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
     }
 
     private fun lifeCylceLog(name : String) {
-        LogW("Fragment : ${binding?.lifecycleOwner} / $name")
+//        LogW("Fragment : ${binding?.lifecycleOwner} / $name")
     }
 
 }

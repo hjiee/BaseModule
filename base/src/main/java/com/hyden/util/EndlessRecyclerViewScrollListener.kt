@@ -113,7 +113,7 @@ abstract class EndlessRecyclerViewScrollListener(private val layoutManager: Recy
     }
 
     private fun scrollLog(msg : Any) {
-        LogW(msg.toString())
+//        LogW(msg.toString())
     }
 
     // Defines the process for actually loading more data based on page

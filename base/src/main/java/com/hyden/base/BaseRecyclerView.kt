@@ -1,6 +1,7 @@
 package com.hyden.base
 
 import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hyden.util.ConstValueUtil.Companion.THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.ItemLongClickListener
+import com.hyden.util.LogUtil.LogE
 import com.hyden.util.RecyclerDiffUtil
 
 class BaseRecyclerView {
