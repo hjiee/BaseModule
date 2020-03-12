@@ -1,12 +1,16 @@
 package com.hyden.base
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.hyden.util.LogUtil.LogW
+import com.hyden.ext.showSimpleDialog
+import com.hyden.ext.moveToActivity
+import com.hyden.util.ConstValueUtil.Companion.DEF_REQUEST_PERMISSION_CODE
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.androidx.scope.currentScope
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
@@ -25,6 +29,25 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         binding.lifecycleOwner = this
         lifeCylceLog("onCreate")
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            DEF_REQUEST_PERMISSION_CODE -> {
+                showSimpleDialog("권한이 필요합니다. 권한설정 화면으로 이동하시겠습니까?") {
+                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                        data = Uri.fromParts("package",packageName,null)
+                        moveToActivity(this)
+                    }
+                }
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         initBind()
@@ -44,9 +67,6 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         super.onRestart()
         lifeCylceLog("onRestart")
     }
-
-
-
 
 
     override fun onPause() {

@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hyden.util.LogUtil
 import com.hyden.util.LogUtil.LogE
 import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.scope.currentScope
 
-abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : Fragment() {
+abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding>(private val layoutId : Int) : BottomSheetDialogFragment() {
 
     lateinit var binding : B
     lateinit var compositeDisposable: CompositeDisposable
@@ -34,14 +36,6 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
         lifeCylceLog("onCreateView")
         initBind()
         return binding.root
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onDestroyView() {

@@ -51,7 +51,7 @@ fun ImageView.loadUrl(
                         apply(RequestOptions.bitmapTransform(multiTransformation))
                     }
                     ImageTransformType.FIT -> {
-                        override(450, 650)
+//                        override(450, 650)
                         val multiTransformation = MultiTransformation<Bitmap>(
                             CenterCrop(),
                             FitCenter()

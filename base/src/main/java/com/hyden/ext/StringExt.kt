@@ -1,16 +1,19 @@
 package com.hyden.ext
 
-import android.widget.TextView
 import java.text.DecimalFormat
-import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import java.util.regex.Pattern
 
 
-fun String.numberFormatter() : String {
+fun String.numberFormatter(): String {
     return DecimalFormat("#,###").let {
         it.format(this.toDouble())
     }
 }
 
+fun String.onlyNumber(): String {
+    return "^*[^0-9]*+".toRegex().replace(this,"")
+}
 
+fun String.validationNickname() : Boolean {
+    return Pattern.matches("^*[가-힣a-zA-Z0-9_]*+",this)
+}

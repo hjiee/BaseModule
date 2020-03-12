@@ -29,7 +29,6 @@ class BaseRecyclerView {
         override fun getItemCount(): Int = list.size
         override fun onBindViewHolder(holder: ViewHolder<B>, position: Int) =
             holder.onBind(list[position])
-
     }
 
     abstract class Adapter<ITEM : Any, B : ViewDataBinding>(
