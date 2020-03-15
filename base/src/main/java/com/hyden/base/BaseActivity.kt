@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import com.hyden.ext.showSimpleDialog
 import com.hyden.ext.moveToActivity
 import com.hyden.util.ConstValueUtil.Companion.DEF_REQUEST_PERMISSION_CODE
+import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {

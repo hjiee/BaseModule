@@ -3,10 +3,12 @@ package com.hyden.ext
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.hyden.base.R
@@ -59,18 +61,24 @@ fun Context.showSimpleDialog(
     AlertDialog.Builder(this, R.style.DeleteDialog).apply {
         setTitle(getString(R.string.app_name))
         setMessage("$message")
-        setPositiveButton("확인") { _, _ ->
+        setPositiveButton(getString(R.string.ok)) { _, _ ->
             result.invoke()
         }
-        setNegativeButton("취소") { _, _ ->
+        setNegativeButton(getString(R.string.cancel)) { _, _ ->
         }
     }.show()
+//        .create().run {
+//        val textMessage = this.findViewById<TextView>(android.R.id.message)
+//        textMessage?.textSize = 20f
+//        textMessage?.typeface = Typeface.createFromAsset(assets,"fonts/scdream5_medium")
+//        show()
+//    }
 }
 
 
 fun Context.isTimeAutomatic(truth : () -> Unit) {
     if(Settings.Global.getInt(contentResolver, Settings.Global.AUTO_TIME, 0) == 0) {
-        showSimpleDialog("시스템시간을 네트워크시간으로 설정하겠습니까?") {
+        showSimpleDialog(getString(R.string.setting_system_time)) {
             startActivity(Intent(Settings.ACTION_DATE_SETTINGS))
         }
     } else {

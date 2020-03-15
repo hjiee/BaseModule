@@ -8,3 +8,8 @@ fun Float.toPx(context : Context): Int = TypedValue.applyDimension(
     this,
     context.resources.displayMetrics
 ).toInt()
+
+enum class Result {
+    SUCCESS,
+    FAILURE
+}

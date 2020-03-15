@@ -18,7 +18,8 @@ class BaseRecyclerView {
     abstract class SimpleAdapter<B : ViewDataBinding, T>(
         private val layoutId: Int,
         private val listItem: List<T>,
-        private val bindingVariableId: Int?
+        private val bindingVariableId: Int?,
+        private val clickItemEvent: ItemClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
         private var list = listItem

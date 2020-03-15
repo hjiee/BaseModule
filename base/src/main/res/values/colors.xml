@@ -7,6 +7,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGray">#6D6D6D</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBackgroundIcon">#C1272D</color>
 
     <color name="colorLightBlack1">#424242</color>
     <color name="colorLightBlack2">#202020</color>
