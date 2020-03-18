@@ -15,6 +15,13 @@ fun AppCompatActivity.replaceFragment(fragment : Fragment, layoutId : Int) {
         .replace(layoutId,fragment)
         .commitNow()
 }
+fun AppCompatActivity.replaceFragmentStack(fragment : Fragment, layoutId : Int) {
+    supportFragmentManager.beginTransaction()
+        .setCustomAnimations(R.anim.fade_in,R.anim.fade_out)
+        .replace(layoutId,fragment)
+        .addToBackStack(null)
+        .commit()
+}
 
 fun AppCompatActivity.moveToActivity(intent : Intent) {
     startActivity(intent)

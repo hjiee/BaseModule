@@ -92,6 +92,7 @@ class BaseRecyclerView {
         fun onBind(item: Any?) {
             bindingVariableId?.let {
                 binding?.setVariable(it, item)
+                binding?.executePendingBindings()
             }
         }
     }
