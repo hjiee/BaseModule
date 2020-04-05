@@ -71,9 +71,7 @@ class BaseRecyclerView {
         fun updateItems(items: List<ITEM>) {
             RecyclerDiffUtil(list, items).apply {
                 list = items
-                DiffUtil.calculateDiff(this).let {
-                    it.dispatchUpdatesTo(this@Adapter)
-                }
+                DiffUtil.calculateDiff(this).dispatchUpdatesTo(this@Adapter)
             }
         }
     }

@@ -48,7 +48,7 @@ fun ImageView.loadUrl(
         Glide.with(this)
             .load(strUrl)
             .placeholder(R.drawable.empty)
-            .listener(createLoggerListener(strUrl))
+//            .listener(createLoggerListener(strUrl))
             .error(R.drawable.book)
             .apply {
                 when (type) {
@@ -88,7 +88,7 @@ fun ImageView.loadBitmap(bitmap: Bitmap?) {
     bitmap?.let {
         Glide.with(this)
             .load(bitmap)
-            .listener(createLoggerListener("test"))
+//            .listener(createLoggerListener("test"))
             .error(R.drawable.book)
             .apply {
                 val multiTransformation = MultiTransformation<Bitmap>(

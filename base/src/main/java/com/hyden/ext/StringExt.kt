@@ -10,7 +10,7 @@ fun String.numberFormatter(): String {
     }
 }
 
-fun String.onlyNumber(): String {
+fun CharSequence.onlyNumber(): String {
     return "^*[^0-9]*+".toRegex().replace(this,"")
 }
 
