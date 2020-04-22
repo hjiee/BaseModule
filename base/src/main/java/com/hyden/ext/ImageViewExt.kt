@@ -11,6 +11,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -47,7 +48,7 @@ fun ImageView.loadUrl(
     url?.let { strUrl ->
         Glide.with(this)
             .load(strUrl)
-            .placeholder(R.drawable.empty)
+//            .placeholder(R.color.colorLightBlack3)
 //            .listener(createLoggerListener(strUrl))
             .error(R.drawable.book)
             .apply {
@@ -59,7 +60,7 @@ fun ImageView.loadUrl(
                             radius?.toFloat()?.let { RoundedCornersTransformation(it.toPx(context), 0) } ?: RoundedCornersTransformation(14f.toPx(context),0)
                         )
                         // 이미지 로딩 애니메이션
-                        transition(DrawableTransitionOptions.withCrossFade(1000))
+                        transition(DrawableTransitionOptions.withCrossFade(500))
                         apply(RequestOptions.bitmapTransform(multiTransformation))
                     }
                     ImageTransformType.FIT -> {
