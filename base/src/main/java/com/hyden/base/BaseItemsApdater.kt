@@ -2,14 +2,16 @@ package com.hyden.base
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import com.hyden.util.ItemClickListener
 
 class BaseItemsApdater(
-    val layoutId: Int,
-    val bindingVariableId: Int? = -1
+    private val layoutId: Int,
+    private val bindingVariableId: Int? = -1,
+    private val clickItemEvent: ItemClickListener? = null
 ) : BaseRecyclerView.Adapter<Any, ViewDataBinding>(
     layoutId = layoutId,
-    bindingVariableId = bindingVariableId
-
+    bindingVariableId = bindingVariableId,
+    clickItemEvent = clickItemEvent
 ) {
 
     private val items = mutableListOf<Any>()
