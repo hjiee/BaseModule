@@ -13,6 +13,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.hyden.base.R
 
+fun Context.versionName() : String =
+    packageManager.getPackageInfo(packageName,0).versionName
+
 
 fun Context.showKeyboard(view: View) {
     view.run {
