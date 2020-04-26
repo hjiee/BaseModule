@@ -12,12 +12,12 @@ import com.hyden.ext.moveToActivity
 import com.hyden.util.ConstValueUtil.Companion.DEF_REQUEST_PERMISSION_CODE
 import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
     lateinit var binding : B
     lateinit var compositeDisposable: CompositeDisposable
-
     abstract fun initBind()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,7 +87,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
     }
 
     private fun lifeCylceLog(name : String) {
-//        LogW("Activity : ${binding?.lifecycleOwner} / $name")
+        LogW("Activity : ${binding?.lifecycleOwner} / $name")
     }
 
 }

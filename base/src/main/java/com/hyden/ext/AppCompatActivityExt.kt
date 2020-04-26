@@ -2,6 +2,7 @@ package com.hyden.ext
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.hyden.base.R
@@ -23,13 +24,14 @@ fun AppCompatActivity.replaceFragmentStack(fragment : Fragment, layoutId : Int) 
         .commit()
 }
 
-fun AppCompatActivity.moveToActivity(intent : Intent) {
-    startActivity(intent)
+fun AppCompatActivity.moveToActivity(intent : Intent, options: Bundle? = null) {
+    startActivity(intent,options)
+//    startActivity(intent)
     overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
 }
 
-fun AppCompatActivity.moveToActivityForResult(intent : Intent, requestCode : Int = BOOK_NOTE_REQUEST_CODE ) {
-    startActivityForResult(intent,requestCode)
+fun AppCompatActivity.moveToActivityForResult(intent : Intent, requestCode : Int = BOOK_NOTE_REQUEST_CODE, options: Bundle? = null) {
+    startActivityForResult(intent,requestCode,options)
     overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
 }
 
