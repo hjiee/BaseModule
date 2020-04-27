@@ -32,6 +32,11 @@ fun Fragment.moveToActivity(intent : Intent?) {
     activity?.overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
 }
 
+fun Fragment.moveToActivityForResult(intent : Intent?,requestCode : Int) {
+    startActivityForResult(intent,requestCode)
+    activity?.overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+}
+
 fun Fragment.permissonsCheck(
     neededPermissions: Array<String>,
     granted : (() -> Unit)? = null

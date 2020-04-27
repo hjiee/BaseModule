@@ -45,7 +45,7 @@ abstract class BaseDialogFragment<B : ViewDataBinding>(private val layoutId : In
 
     override fun onDestroy() {
         super.onDestroy()
-//        lifeCylceLog("onDestroy")
+        lifeCylceLog("onDestroy")
         compositeDisposable.dispose()
     }
 
@@ -71,7 +71,7 @@ abstract class BaseDialogFragment<B : ViewDataBinding>(private val layoutId : In
     }
 
     private fun lifeCylceLog(name : String) {
-//        LogW("Fragment : ${binding?.lifecycleOwner} / $name")
+        LogW("DialogFragment : ${binding.lifecycleOwner} / $name")
     }
 
 }

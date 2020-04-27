@@ -9,31 +9,31 @@ object LogUtil {
 
     fun LogV(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.v(TAG, msg)
+            Log.v(tag ?: TAG,"${msg}")
         }
     }
 
     fun LogD(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.d(tag ?: TAG, msg)
+            Log.d(tag ?: TAG,"${msg}")
         }
     }
 
     fun LogI(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.i(tag ?: TAG, msg)
+            Log.i(tag ?: TAG,"${msg}")
         }
     }
 
     fun LogW(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.w(tag ?: TAG, msg)
+            Log.w(tag ?: TAG,"${msg}")
         }
     }
 
     fun LogE(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.e(tag ?: TAG, msg)
+            Log.e(tag ?: TAG,"${msg}")
         }
     }
 }
