@@ -8,11 +8,13 @@ import com.hyden.view.webview.WebViewActivity
 import com.hyden.view.webview.WebViewActivity.Companion.WEBVIEW_URL
 
 @BindingAdapter(value = ["webviewUrl"], requireAll = false)
-fun View.webViewUrl(url: String) {
-    setOnClickListener {
-        Intent(context, WebViewActivity::class.java).run {
-            putExtra(WEBVIEW_URL,url)
-            context.startActivity(this)
+fun View.webViewUrl(url: String?) {
+    url?.let {
+        setOnClickListener {
+            Intent(context, WebViewActivity::class.java).run {
+                putExtra(WEBVIEW_URL,url)
+                context.startActivity(this)
+            }
         }
     }
 }
