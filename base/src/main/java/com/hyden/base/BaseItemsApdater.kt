@@ -3,15 +3,18 @@ package com.hyden.base
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import com.hyden.util.ItemClickListener
+import com.hyden.util.ItemLongClickListener
 
 class BaseItemsApdater(
     private val layoutId: Int,
     private val bindingVariableId: Int? = -1,
-    private val clickItemEvent: ItemClickListener? = null
+    private val clickItemEvent: ItemClickListener? = null,
+    private val longClickItemEvent: ItemLongClickListener? = null
 ) : BaseRecyclerView.Adapter<Any, ViewDataBinding>(
     layoutId = layoutId,
     bindingVariableId = bindingVariableId,
-    clickItemEvent = clickItemEvent
+    clickItemEvent = clickItemEvent,
+    longClickItemEvent = longClickItemEvent
 ) {
 
     private val items = mutableListOf<Any>()
