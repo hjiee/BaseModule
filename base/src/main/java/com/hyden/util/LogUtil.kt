@@ -33,7 +33,7 @@ object LogUtil {
 
     fun LogE(msg: String,tag: String? = null) {
         if (BuildConfig.DEBUG) {
-            Log.e(tag ?: TAG,"${msg}")
+            Log.e(tag ?: TAG,"ERROR : ${msg}")
         }
     }
 }
