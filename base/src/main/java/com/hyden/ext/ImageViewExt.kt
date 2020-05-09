@@ -54,7 +54,7 @@ fun ImageView.loadUrl(
             .apply {
                 when (type) {
                     ImageTransformType.ROUND -> {
-                        val multiTransformation = MultiTransformation<Bitmap>(
+                        val multiTransformation = MultiTransformation(
                             CenterCrop(),
                             FitCenter(),
                             radius?.toFloat()?.let { RoundedCornersTransformation(it.toPx(context), 0) } ?: RoundedCornersTransformation(14f.toPx(context),0)
@@ -64,13 +64,13 @@ fun ImageView.loadUrl(
                         apply(RequestOptions.bitmapTransform(multiTransformation))
                     }
                     ImageTransformType.FIT -> {
-//                        override(450, 650)
                         override(Target.SIZE_ORIGINAL)
                         val multiTransformation = MultiTransformation<Bitmap>(
                             CenterCrop(),
                             FitCenter()
                         )
 //                        apply(RequestOptions.fitCenterTransform().centerCrop())
+                        transition(DrawableTransitionOptions.withCrossFade(500))
                         apply(RequestOptions.bitmapTransform(multiTransformation))
                     }
                     ImageTransformType.CIRCLE -> {
