@@ -39,7 +39,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode) {
             DEF_REQUEST_PERMISSION_CODE -> {
-                showSimpleDialog("권한이 필요합니다. 권한설정 화면으로 이동하시겠습니까?") {
+                showSimpleDialog(message = "권한이 필요합니다. 권한설정 화면으로 이동하시겠습니까?") {
                     Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
                         data = Uri.fromParts("package",packageName,null)
                         moveToActivity(this)

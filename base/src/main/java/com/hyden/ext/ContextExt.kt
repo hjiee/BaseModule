@@ -58,14 +58,15 @@ fun Context.showToast(message: String) {
 }
 
 fun Context.showSimpleDialog(
+    title : String? = getString(R.string.app_name),
     message: String,
-    result: () -> Unit
+    result: (() -> Unit)? = null
 ) {
     AlertDialog.Builder(this, R.style.DeleteDialog).apply {
-        setTitle(getString(R.string.app_name))
+        setTitle(title)
         setMessage("$message")
         setPositiveButton(getString(R.string.ok)) { _, _ ->
-            result.invoke()
+            result?.invoke()
         }
         setNegativeButton(getString(R.string.cancel)) { _, _ ->
         }
@@ -81,7 +82,7 @@ fun Context.showSimpleDialog(
 
 fun Context.isTimeAutomatic(truth : () -> Unit) {
     if(Settings.Global.getInt(contentResolver, Settings.Global.AUTO_TIME, 0) == 0) {
-        showSimpleDialog(getString(R.string.setting_system_time)) {
+        showSimpleDialog(message = getString(R.string.setting_system_time)) {
             startActivity(Intent(Settings.ACTION_DATE_SETTINGS))
         }
     } else {
