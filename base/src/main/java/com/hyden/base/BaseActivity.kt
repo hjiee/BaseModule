@@ -18,7 +18,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
 
     lateinit var binding : B
     lateinit var compositeDisposable: CompositeDisposable
-    abstract fun initBind()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
         binding = DataBindingUtil.inflate(layoutInflater, layoutId, null, false)
         setContentView(binding.root)
         binding.lifecycleOwner = this
+        observing()
         lifeCylceLog("onCreate")
     }
 
@@ -48,6 +49,9 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
             }
         }
     }
+
+    open fun initBind() { }
+    open fun observing() { }
 
     override fun onStart() {
         super.onStart()

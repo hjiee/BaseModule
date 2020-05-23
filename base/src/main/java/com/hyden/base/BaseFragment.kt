@@ -18,7 +18,8 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
 
     lateinit var binding : B
     lateinit var compositeDisposable: CompositeDisposable
-    abstract fun initBind()
+    open fun initBind() { }
+    open fun observing() { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
