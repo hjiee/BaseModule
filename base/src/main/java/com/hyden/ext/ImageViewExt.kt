@@ -39,11 +39,12 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 //            .into(this)
 //    }
 //}
-@BindingAdapter(value = ["loadUrl", "tranformType","radius"], requireAll = false)
+@BindingAdapter(value = ["loadUrl", "tranformType","radius","loadingDuration"], requireAll = false)
 fun ImageView.loadUrl(
     url: String?,
     type: ImageTransformType? = null,
-    radius : Int? = 14
+    radius : Int? = 14,
+    loadingDuration : Int = 500
 ) {
     url?.let { strUrl ->
         Glide.with(this)
@@ -60,7 +61,7 @@ fun ImageView.loadUrl(
                             radius?.toFloat()?.let { RoundedCornersTransformation(it.toPx(context), 0) } ?: RoundedCornersTransformation(14f.toPx(context),0)
                         )
                         // 이미지 로딩 애니메이션
-                        transition(DrawableTransitionOptions.withCrossFade(500))
+                        transition(DrawableTransitionOptions.withCrossFade(loadingDuration))
                         apply(RequestOptions.bitmapTransform(multiTransformation))
                     }
                     ImageTransformType.FIT -> {
