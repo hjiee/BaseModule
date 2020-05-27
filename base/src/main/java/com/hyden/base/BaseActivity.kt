@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -52,6 +53,42 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
 
     open fun initBind() { }
     open fun observing() { }
+
+    fun density() {
+        val outMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(outMetrics)
+        val dpi = outMetrics.densityDpi
+        val density =  outMetrics.density
+        val width = outMetrics.widthPixels
+        val height = outMetrics.heightPixels
+
+        LogW("dpi : $dpi")
+        LogW("density : $density")
+        LogW("width x height : $width x $height")
+        when {
+            dpi <= 120 -> {
+                LogW("밀도 : ldpi")
+            }
+            dpi <= 160 -> {
+                LogW("밀도 : mdpi")
+            }
+            dpi <= 240 -> {
+                LogW("밀도 : hdpi")
+            }
+            dpi <= 320 -> {
+                LogW("밀도 : xhdpi")
+            }
+            dpi <= 480 -> {
+                LogW("밀도 : xxhdpi")
+            }
+            dpi <= 640 -> {
+                LogW("밀도 : xxxhdpi")
+            }
+            else -> {
+                LogW("밀도 : not")
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()

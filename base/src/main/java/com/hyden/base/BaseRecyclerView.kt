@@ -12,6 +12,7 @@ import com.hyden.util.ConstValueUtil.Companion.THROTTLE
 import com.hyden.util.ItemClickListener
 import com.hyden.util.ItemLongClickListener
 import com.hyden.util.LogUtil.LogE
+import com.hyden.util.LogUtil.LogW
 import com.hyden.util.RecyclerDiffUtil
 
 class BaseRecyclerView {
@@ -52,6 +53,7 @@ class BaseRecyclerView {
                 setOnClickListener {
                     if (!(SystemClock.elapsedRealtime() - lastClickTime < THROTTLE)) {
                         clickItemEvent?.onItemClick(list[holder.adapterPosition])
+                        LogW("width x height : ${width} / ${height}")
                     }
                 }
                 setOnLongClickListener {
