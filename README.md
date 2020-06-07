@@ -1,13 +1,18 @@
 # BaseModule
  ## views
+ - BaseApplication
  - BaseActivity
  - BaseFragment
  - BaseRecyclerView
  
- ## utils
+ ## Utils
  - RecyclerView ItemDecoration
  - Log
+ - Enums
+ - Adapter
+ - Permission
  
  ## Extensions
- - ImageExt
+ - ViewExt
  - DialogExt
+
