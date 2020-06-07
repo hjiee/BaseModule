@@ -13,7 +13,6 @@ import com.hyden.util.LogUtil
 import com.hyden.util.LogUtil.LogE
 import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.androidx.scope.currentScope
 
 abstract class BaseDialogFragment<B : ViewDataBinding>(private val layoutId : Int) : DialogFragment() {
 

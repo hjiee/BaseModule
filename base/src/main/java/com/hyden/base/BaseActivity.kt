@@ -13,7 +13,6 @@ import com.hyden.ext.moveToActivity
 import com.hyden.util.ConstValueUtil.Companion.DEF_REQUEST_PERMISSION_CODE
 import com.hyden.util.LogUtil.LogW
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
