@@ -1,6 +1,7 @@
 package com.hyden.base
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hyden.util.NetworkStatus
 import io.reactivex.disposables.CompositeDisposable
@@ -8,11 +9,11 @@ import io.reactivex.disposables.CompositeDisposable
 abstract class BaseViewModel : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
-    val loading = ObservableField<Boolean>()
-    val loadingStatus = ObservableField<NetworkStatus>()
+    val loading = MutableLiveData<Boolean>()
+    val loadingStatus = MutableLiveData<NetworkStatus>()
 
     init {
-        loading.set(false)
+        loading.value = (false)
     }
 
     override fun onCleared() {
@@ -22,10 +23,10 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun showLoading() {
-        loading.set(true)
+        loading.value = (true)
     }
 
     fun hideLoading() {
-        loading.set(false)
+        loading.value = (false)
     }
 }
